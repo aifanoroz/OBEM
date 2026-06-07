@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+    />
+
+    <item
+        android:id="@+id/diary"
+        android:icon="@drawable/ic_diary"
+        android:title="Diary"
+       />
+
+    <item
+        android:id="@+id/appoint"
+        android:icon="@drawable/ic_appointment"
+        android:title="Apointment"
+        />
+
+    <item
+        android:id="@+id/review"
+        android:icon="@drawable/ic_baseline_rate_review_24"
+        android:title="Review"
+        />
+
+
+
+
+
+
+
+
+</menu>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:gl="http://schemas.android.com/apk/res-auto"
+    tools:context=".AppointmentActivity"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/regularPad"
+        android:background="@drawable/obem_header_bk"
+        android:text="Appointment"
+        android:fontFamily="@font/karla_bold"
+        android:textColor="@color/whiteTextColor"
+        android:textSize="@dimen/largeText"
+        android:textStyle="bold"
+        android:gravity="center" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    </RelativeLayout>
+
+    <!--remove the below layout with recycler view, use card poplar courses as model for design-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardPreventCornerOverlap="true"
+        android:layout_marginTop="15dp">
+
+        <net.colindodd.gradientlayout.GradientRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="100dp"
+            gl:start_color="@color/gradientLightBlue"
+            gl:end_color="@color/gradientViolet"
+            gl:orientation="LEFT_RIGHT"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/welcome"
+                style="@style/viewParentt.headerText.HomeCardTitle"
+                android:fontFamily="@font/karla_bold"
+                android:textSize="18sp"
+                android:text=""
+                />
+            <TextView
+                android:id="@+id/username"
+                android:textSize="17sp"
+                android:layout_marginTop="5dp"
+                style="@style/viewParent.headerText"
+                android:textColor="@color/whiteTextColor"
+                android:layout_below="@+id/welcome"/>
+
+
+            <ImageView
+                android:maxHeight="90dp"
+
+                style="@style/homeCardImage" />
+
+        </net.colindodd.gradientlayout.GradientRelativeLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardPreventCornerOverlap="true"
+        android:layout_marginTop="30dp">
+
+        <net.colindodd.gradientlayout.GradientRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="100dp"
+            gl:start_color="@color/gradientLightBlue"
+            gl:end_color="@color/gradientViolet"
+            gl:orientation="LEFT_RIGHT"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/viewParentt.headerText.HomeCardTitle"
+                android:textSize="20sp"
+                android:text="Appointment "
+              />
+            <TextView
+                android:id="@+id/title"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                style="@style/viewParentt.headerText.homeCardContent"
+                android:layout_below="@+id/name"/>
+
+            <TextView
+                android:id="@+id/time"
+                style="@style/viewParentt.headerText.homeCardContent"
+                android:layout_below="@id/title"/>
+
+            <TextView
+                android:id="@+id/date"
+                style="@style/viewParentt.headerText.homeCardContent"
+                android:layout_below="@id/time"/>
+
+            <TextView
+                android:id="@+id/status"
+                style="@style/viewParentt.headerText.homeCardContent"
+                android:layout_below="@id/date"/>
+
+            <ImageView
+                android:maxHeight="90dp"
+                android:src="@drawable/android_developer"
+                style="@style/homeCardImage" />
+
+        </net.colindodd.gradientlayout.GradientRelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/history"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        app:backgroundTint="@null"
+        android:background="@drawable/ripple"
+        android:gravity="center"
+        android:fontFamily="@font/karla_bold"
+        android:text="View History"
+        android:textColor="#ffff"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        app:backgroundTint="@null"
+        android:background="@drawable/ripple"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/karla_bold"
+        android:text="New Appointment"
+        android:layout_marginBottom="40dp"
+        android:textColor="#ffff"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <include layout="@layout/activity_chip_bar"
+        ></include>
+
+
+</LinearLayout>

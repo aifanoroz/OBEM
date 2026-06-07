@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DoctorReview"
+    android:orientation="vertical">
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/regularPad"
+        android:background="@drawable/obem_header_bk"
+        android:text="Doctor's Review"
+        android:textColor="@color/whiteTextColor"
+        android:textSize="@dimen/largeText"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+
+
+        android:id="@+id/cardLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginTop="-0dp">
+
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="16dp"
+            android:layout_height="90dp"
+            app:cardBackgroundColor="#d9dadb"
+            style="@style/reportsCardStyle">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/bv"
+                    style="@style/viewParent.headerText"
+                    android:textColor="#AA00D7"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/karla_bold"
+                    android:text="BlOOD PRESSURE"/>
+
+                <TextView
+                    android:id="@+id/bpressure"
+                    android:layout_below="@+id/bv"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/black"
+                    style="@style/reportContentText"
+                    android:layout_marginLeft="35dp"
+                    />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cardLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@id/headerLayout"
+        android:layout_marginTop="5dp">
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="#d9dadb"
+            android:layout_height="90dp"
+            style="@style/reportsCardStyle">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/bs"
+                    android:textColor="#AA00D7"
+                    style="@style/viewParent.headerText"
+                    android:fontFamily="@font/karla_bold"
+                    android:textSize="20sp"
+                    android:text="BLOOD SUGAR"/>
+                <TextView
+                    android:id="@+id/bsugar"
+                    android:textColor="@color/black"
+                    android:layout_below="@+id/bs"
+                    android:layout_marginTop="15dp"
+                    style="@style/reportContentText"
+                    android:fontFamily="@font/karla_bold"
+                    android:layout_marginLeft="35dp"
+
+                    />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/cardLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@id/headerLayout"
+        android:layout_marginTop="5dp">
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="#d9dadb"
+            android:layout_height="90dp"
+            style="@style/reportsCardStyle">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/w"
+                    android:textColor="#AA00D7"
+                    style="@style/viewParent.headerText"
+                    android:fontFamily="@font/karla_bold"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="20sp"
+                    android:text="WEIGHT"/>
+                <TextView
+                    android:id="@+id/weight"
+                    android:textColor="@color/black"
+                    android:layout_below="@+id/w"
+                    android:layout_marginTop="15dp"
+                    style="@style/reportContentText"
+                    android:fontFamily="@font/karla_bold"
+                    android:layout_marginLeft="35dp"
+
+                    />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/cardLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@id/headerLayout"
+        android:layout_marginTop="5dp">
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="#d9dadb"
+            android:layout_height="130dp"
+            style="@style/reportsCardStyle">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/c"
+                    android:textColor="#AA00D7"
+                    style="@style/viewParent.headerText"
+                    android:fontFamily="@font/karla_bold"
+                    android:textSize="20sp"
+                    android:layout_centerHorizontal="true"
+                    android:text="OVERALL COMMENT"/>
+
+
+                <TextView
+                    android:id="@+id/comment"
+                    android:textColor="@color/black"
+                    android:layout_below="@+id/c"
+                    android:layout_marginTop="15dp"
+                    style="@style/reportContentText"
+                    android:fontFamily="@font/karla_bold"
+                    android:layout_marginLeft="35dp"
+
+                    />
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+
+
+    <include layout="@layout/activity_chip_bar">
+
+    </include>
+
+</LinearLayout>
+

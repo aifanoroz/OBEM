@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DailyDiary"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/regularPad"
+        android:background="@drawable/obem_header_bk"
+        android:text="Overview"
+        android:textColor="@color/whiteTextColor"
+        android:fontFamily="@font/karla_bold"
+        android:textSize="@dimen/largeText"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <view
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            class="im.dacer.androidcharts.PieView"
+            android:id="@+id/pie_chart" />
+        <TextView
+            android:id="@+id/square"
+            android:layout_width="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/pie_chart"
+            android:background="#4A8DB5"/>
+        <TextView
+            android:id="@+id/remaining"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp"
+             android:layout_toRightOf="@+id/square"
+            android:layout_below="@+id/pie_chart"
+            android:textColor="#4A8DB5"/>
+
+        <TextView
+            android:id="@+id/gsquare"
+            android:layout_width="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/square"
+            android:background="#4EBA6A"/>
+        <TextView
+            android:id="@+id/taken"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/gsquare"
+            android:layout_below="@+id/remaining"
+            android:textColor="#4EBA6A"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_height="160dp">
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="169dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:backgroundTint="@null"
+            android:background="@drawable/ripple"
+            android:gravity="center"
+            android:fontFamily="@font/karla_bold"
+            android:text="Add food intake"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffff"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/view"
+            android:layout_width="169dp"
+            android:layout_height="60dp"
+            app:backgroundTint="@null"
+            android:background="@drawable/ripple"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/karla_bold"
+            android:text="View food intake"
+            android:layout_below="@+id/submit"
+            android:layout_marginTop="30dp"
+            android:textColor="#ffff"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <include layout="@layout/activity_chip_bar"
+        ></include>
+
+
+
+</LinearLayout>

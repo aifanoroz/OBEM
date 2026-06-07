@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".HealthProfile">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:fontFamily="@font/karla_bold"
+            android:text="HEALTH PROFILE ANALYSIS"
+            android:textAllCaps="true"
+            android:textColor="@color/violet"
+            android:textSize="24sp"
+            android:textStyle="bold"
+           />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="SELECT YOUR GENDER"
+            android:fontFamily="@font/karla_bold"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/femaleBtn"
+                    android:layout_width="110dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/karla_bold"
+                    app:backgroundTint="@color/animation_button"
+                    android:text="FEMALE"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:elevation="10dp"
+                    android:translationZ="10dp"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/maleBtn"
+                    android:layout_width="110dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/karla_bold"
+                    app:backgroundTint="@color/animation_button"
+                    android:text="MALE"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:elevation="10dp"
+                    android:translationZ="10dp"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ageTV"
+                android:layout_width="100dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Age"
+                android:fontFamily="@font/karla_bold"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <NumberPicker
+                android:id="@+id/numberPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:descendantFocusability="blocksDescendants"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="@font/karla_bold"
+                android:gravity="center"
+                android:hint="weight"
+               android:inputType="numberDecimal"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/height"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="@font/karla_bold"
+                android:gravity="center"
+                android:hint="height"
+                android:inputType="numberDecimal"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/tweight"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="cholesterol"
+                android:inputType="numberDecimal"
+                android:textSize="20sp"
+                android:fontFamily="@font/karla_bold"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/sugar"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="blood sugar"
+                android:inputType="numberDecimal"
+                android:fontFamily="@font/karla_bold"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/systolic"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="systolic value"
+                android:inputType="number"
+                android:fontFamily="@font/karla_bold"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/dystolic"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+                android:gravity="center"
+                android:hint="diastolic value"
+                android:fontFamily="@font/karla_bold"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="169dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                app:backgroundTint="@null"
+                android:background="@drawable/ripple"
+                android:gravity="center"
+                android:fontFamily="@font/karla_bold"
+                android:text="analyze data"
+                android:textColor="#ffff"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</android.widget.RelativeLayout>

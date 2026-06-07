@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">OBeM</string>
+    <string name="login">Login</string>
+    <string name="Register">Register</string>
+    <string name="OBem">OBeM</string>
+    <string name="tag_line">A Million Miles to Health is Just a Step Away</string>
+    <string name="tag_name">Obesity Monitoring Secured System</string>
+    <string name="action_settings">Settings</string>
+</resources>

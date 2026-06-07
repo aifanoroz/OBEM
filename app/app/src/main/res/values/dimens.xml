@@ -1,0 +1,13 @@
+<resources>
+	<dimen name="add_account_activity_add_abank_account_constraint_layout_radius">10dp</dimen>
+	<dimen name="headerTextSize">20sp</dimen>
+	<dimen name="headerMoreTextSize">18sp</dimen>
+	<!-- textSize -->
+	<dimen name="smallText"></dimen>
+	<dimen name="regularText">17sp</dimen>
+	<dimen name="largeText">30sp</dimen>
+	<dimen name="extralargeText">50sp</dimen>
+	<!-- spaceSize -->
+	<dimen name="wrapPad">40dp</dimen>
+	<dimen name="regularPad">15dp</dimen>
+</resources>
