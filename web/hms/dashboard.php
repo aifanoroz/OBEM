@@ -1,11 +1,18 @@
 <?php
 session_start();
-//error_reporting(0);
-include('./include/dbconfig.php');
-include('include/checklogin.php');
-check_login();
+
+// Membuka paparan ralat secara paksa untuk mengesan jika ada isu fail dalam folder include/
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Ditutup buat sementara kerana kita menggunakan mod mock login (tanpa Firebase)
+// include('./include/dbconfig.php'); 
+// include('include/checklogin.php');
+// check_login(); 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>

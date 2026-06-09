@@ -1,35 +1,32 @@
 <?php
 session_start();
 error_reporting(0);
-include('../include/dbconfig.php');
+
+// include('../include/dbconfig.php'); // Kita tutup sambungan database asal
+
 if(isset($_POST['submit']))
 {
-	$ref ="Admin";
-	$fetchdata=$database->getReference($ref)->getValue();
-	$email;
-	$password;
+    // Bypassed: Letak apa-apa username & password rekaan awak sendiri
+    $email = "admin";
+    $password = "admin123";
+        
+    // Semak input pengguna dengan data rekaan tadi
+    if($_POST['username'] == $email && $_POST['password'] == $password) {
 
-		$email=$fetchdata['username'];
-		$password=$fetchdata['password'];
-		
-	
-	if($_POST['username']==$email && ($_POST['password']==$password)){
-
-$extra="dashboard.php";//
-$_SESSION['login']=$_POST['username'];
-$_SESSION['id']=$num['id'];
-$host=$_SERVER['HTTP_HOST'];
-$uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
-header("location:http://$host$uri/$extra");
-exit();
-}
-else{
-	$_SESSION['errmsg']="Invalid username or password";
-}
-	
+        $extra = "dashboard.php";
+        $_SESSION['login'] = $_POST['username'];
+        $_SESSION['id'] = 1; // Letak id rekaan sementara
+        $host = $_SERVER['HTTP_HOST'];
+        $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+        header("location:http://$host$uri/$extra");
+        exit();
+    }
+    else {
+        $_SESSION['errmsg'] = "Invalid username or password (Guna: admin / admin123)";
+    }
 }
 ?>
-
+ 
 
 <!DOCTYPE html>
 <!-- Testing -->

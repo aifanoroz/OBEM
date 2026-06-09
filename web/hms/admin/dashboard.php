@@ -126,7 +126,7 @@ check_login();
 		
 			<!-- start: SETTINGS -->
 	<?php include('include/setting.php');?>
-			<>
+
 			<!-- end: SETTINGS -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->

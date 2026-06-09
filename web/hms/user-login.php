@@ -1,36 +1,32 @@
 <?php
 session_start();
 error_reporting(0);
-include('include/dbconfig.php');
+
+// Ditutup sementara rujukan database Firebase
+// include('include/dbconfig.php'); 
+
 if(isset($_POST['submit']))
 {
-	$ref ="Nurse";
-	$fetchdata=$database->getReference($ref)->getValue();
-	$email;
-	$password;
-	$inserted=md5($_POST['password']);
-	foreach($fetchdata as $key=> $row)
-	{
-		$email=$row['email'];
-		$password=$row['password'];
-		$key=$row['key'];
-	
-	if($_POST['username']==$email && $inserted==$password){
+    // Cuma semak username & password rekaan di sini
+    $mock_username = "nurse";
+    $mock_password = "nurse123";
+        
+    // PASTIKAN BARIS 11 INI DITULIS SEPERTI DI BAWAH:
+    if($_POST['username'] == $mock_username && $_POST['password'] == $mock_password) {
 
+        $extra = "dashboard.php";
+        $_SESSION['login'] = $_POST['username'];
+        $_SESSION['id'] = "NURSE-MOCK-ID"; // ID rekaan sementara
+        $_SESSION['role'] = 'nurse';
 
-$extra="dashboard.php";//
-$_SESSION['login']=$_POST['username'];
-$_SESSION['id']=$key;
-$host=$_SERVER['HTTP_HOST'];
-$uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
-header("location:http://$host$uri/$extra");
-exit();
-}
-else
-{
-	$_SESSION['errmsg']="Invalid username or password";
-}
-}
+        $host = $_SERVER['HTTP_HOST'];
+        $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+        header("location:http://$host$uri/$extra");
+        exit();
+    }
+    else {
+        $_SESSION['errmsg'] = "Invalid username or password (Guna: nurse / nurse123)";
+    }
 }
 ?>
 
