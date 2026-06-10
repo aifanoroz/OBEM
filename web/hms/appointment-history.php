@@ -44,7 +44,6 @@ $vid = isset($_GET['viewid']) ? htmlspecialchars($_GET['viewid']) : 'MOCK-PATIEN
                             <div class="row">
                                 <div class="col-sm-8">
                                     <h1 class="mainTitle">Nurse  | Appointment History </h1>
-                                    <small class="text-muted">Viewing history for Patient ID: <?php echo $vid; ?></small>
                                 </div>
                                 <ol class="breadcrumb">
                                     <li>

@@ -61,6 +61,6 @@
 						</ul>
 						<!-- end: CORE FEATURES -->
 						
-					</nav>
+					</nav> 
 					</div>
 			</div>
