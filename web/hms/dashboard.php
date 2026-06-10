@@ -108,12 +108,12 @@ error_reporting(E_ALL);
 				</div>
 			</div>
 			<!-- start: FOOTER -->
-	<?php include('include/footer.php');?>
+	<!--?php include('include/footer.php');? --> 
 			<!-- end: FOOTER -->
 		
 			<!-- start: SETTINGS -->
-	<?php include('include/setting.php');?>
-			<>
+	<!--?php include('include/setting.php');? --> 
+
 			<!-- end: SETTINGS -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->
