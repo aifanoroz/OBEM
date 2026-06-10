@@ -1,44 +1,47 @@
 <?php
 session_start();
-// Pasang error reporting ke 1 jika mahu melakukan debug semasa fasa pembangunan
-error_reporting(0);
-include('../include/dbconfig.php');
-include('include/checklogin.php');
-check_login();
+// Paparkan ralat untuk memudahkan semakan fasa reka bentuk UI
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+// Ditutup sementara bagi mengelakkan crash backend
+// include('../include/dbconfig.php');
+// include('include/checklogin.php');
+// check_login();
+
+// --- SETUP MOCK DATA (Kekalkan struktur session yang sama) ---
+if (!isset($_SESSION['mock_nurses'])) {
+    $_SESSION['mock_nurses'] = [
+        'nurse_id_001' => ['name' => 'Nurse Siti Aminah', 'email' => 'siti.aminah@klinikwildan.com', 'regDate' => '10-01-2026 09:30:15 AM', 'updationDate' => ''],
+        'nurse_id_002' => ['name' => 'Nurse Noraini Yusuf', 'email' => 'noraini.y@klinikwildan.com', 'regDate' => '15-02-2026 11:15:22 AM', 'updationDate' => ''],
+        'nurse_id_003' => ['name' => 'Nurse Farah Diana', 'email' => 'farah.diana@klinikwildan.com', 'regDate' => '03-03-2026 02:45:10 PM', 'updationDate' => ''],
+        'nurse_id_004' => ['name' => 'Nurse Khadijah Razak', 'email' => 'khadijah.r@klinikwildan.com', 'regDate' => '20-04-2026 08:05:40 AM', 'updationDate' => '']
+    ];
+}
+
+// --- TUTORIAL 1: MOCK PROSES DAFTAR (INSERT DATA TO SESSION) ---
 if(isset($_POST['submit']))
 {   
-    $nurname = $_POST['nursename'];
-    $nuremail = $_POST['nurseemail'];
-    // Gunakan password_hash() jika mahu sekuriti moden, 
-    // tetapi jika sistem sedia ada guna md5, kita kekalkan md5 buat masa ini.
-    $password = md5($_POST['npass']);
+    $nurname = htmlspecialchars($_POST['nursename']);
+    $nuremail = htmlspecialchars($_POST['nurseemail']);
+    
+    // Reka ID unik baharu berasaskan fungsi microtime komputer
+    $new_key = 'nurse_id_' . time();
 
-    // 1. Dapatkan rujukan rujukan (Reference) ke Firebase dahulu
-    $ref = "Nurse/";
-    $newDataRef = $database->getReference($ref)->push(); // Guna push kosong untuk dapatkan Key dahulu
-    $key = $newDataRef->getKey();
-
-    // 2. Masukkan sekali 'key' bersama data jururawat supaya tidak perlu operasi update berasingan
-    $nurse = [
-        'key' => $key,
+    // Masukkan data input ke dalam $_SESSION global mock database
+    $_SESSION['mock_nurses'][$new_key] = [
         'name' => $nurname,
         'email' => $nuremail,
-        'password' => $password
+        'regDate' => date('d-m-Y h:i:s A'),
+        'updationDate' => ''
     ];
 
-    // 3. Simpan terus set data lengkap ke Firebase
-    $pushdata = $newDataRef->set($nurse);
-
-    if($pushdata)
-    {
-        echo "<script>alert('Nurse info added Successfully');</script>";
-        echo "<script>window.location.href ='manage-users.php'</script>";
-    }
-    else 
-    {
-        echo "<script>alert('Failed to add Nurse info. Please try again.');</script>";
-    }
+    // Paparkan kotak amaran berjaya dan lompat kembali ke halaman senarai jadual
+    $_SESSION['msg'] = "Mock UI Success: New nurse (" . $nurname . ") added successfully!!";
+    echo "<script>alert('Nurse info added Successfully (Mock Mode)');</script>";
+    echo "<script>window.location.href ='manage_users.php'</script>";
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -68,19 +71,24 @@ if(isset($_POST['submit']))
         </script>
 
         <script>
-        // Memastikan jQuery sedia digunakan sebelum AJAX dipanggil
         function checkemailAvailability() {
-            $("#loaderIcon").show();
-            jQuery.ajax({
-                url: "check_nurse.php",
-                data: 'emailid=' + $("#nurseemail").val(),
-                type: "POST",
-                success: function(data){
-                    $("#email-availability-status").html(data);
+            var email = $("#nurseemail").val();
+            if(email != "") {
+                $("#loaderIcon").show();
+                
+                // Pintasan simulasi tanpa memerlukan fail 'check_nurse.php' backend
+                setTimeout(function(){
                     $("#loaderIcon").hide();
-                },
-                error: function (){}
-            });
+                    // Contoh mudah: jika input mengandungi perkataan 'taken', kita acah ia sudah didaftar
+                    if(email.includes("taken") || email == "siti.aminah@klinikwildan.com") {
+                        $("#email-availability-status").html("<span style='color:red;'> Email already exists. Please try another.</span>");
+                        $("#submit").prop('disabled', true);
+                    } else {
+                        $("#email-availability-status").html("<span style='color:green;'> Email available for registration.</span>");
+                        $("#submit").prop('disabled', false);
+                    }
+                }, 600); // Acah-acah sistem loading selama 0.6 saat
+            }
         }
         </script>
     </head>
@@ -123,8 +131,8 @@ if(isset($_POST['submit']))
                                                         <div class="form-group">
                                                             <label for="nurseemail">Nurse Email</label>
                                                             <input type="email" id="nurseemail" name="nurseemail" class="form-control" placeholder="Enter Nurse Email ID" required="true" onBlur="checkemailAvailability()">
-                                                            <span id="email-availability-status"></span>
-                                                            <span id="loaderIcon" style="display:none;"><i class="fa fa-spinner fa-spin"></i> Checking...</span>
+                                                            <span id="email-availability-status" style="font-size: 12px; display: block; margin-top: 5px;"></span>
+                                                            <span id="loaderIcon" style="display:none; font-size: 12px; color: gray;"><i class="fa fa-spinner fa-spin"></i> Checking availability...</span>
                                                         </div>
 
                                                         <div class="form-group">
@@ -148,12 +156,12 @@ if(isset($_POST['submit']))
                                 </div>
                             </div>
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
             <?php include('include/footer.php');?>
             <?php include('include/setting.php');?>
-            </div>
+        </div>
 
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -168,4 +176,4 @@ if(isset($_POST['submit']))
             });
         </script>
     </body>
-</html>
+</html> 

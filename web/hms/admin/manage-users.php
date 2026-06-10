@@ -1,25 +1,46 @@
 <?php
 session_start();
-error_reporting(0);
-include('../include/dbconfig.php');
-include('include/checklogin.php');
-check_login();
+// Paparkan ralat untuk memudahkan semakan fasa reka bentuk UI
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+// Ditutup sementara bagi mengelakkan ralat fail luaran
+// include('../include/dbconfig.php');
+// include('include/checklogin.php');
+// check_login();
+
+// --- TUTORIAL 1: PROSES DATA REKAAN (MOCK DATA) MENGGUNAKAN SESSION ---
+if (!isset($_SESSION['mock_nurses'])) {
+    // Set data permulaan sekiranya session belum wujud
+    $_SESSION['mock_nurses'] = [
+        'nurse_id_001' => ['name' => 'Nurse Siti Aminah', 'email' => 'siti.aminah@klinikwildan.com'],
+        'nurse_id_002' => ['name' => 'Nurse Noraini Yusuf', 'email' => 'noraini.y@klinikwildan.com'],
+        'nurse_id_003' => ['name' => 'Nurse Farah Diana', 'email' => 'farah.diana@klinikwildan.com'],
+        'nurse_id_004' => ['name' => 'Nurse Khadijah Razak', 'email' => 'khadijah.r@klinikwildan.com']
+    ];
+}
+
+// --- TUTORIAL 2: SIMULASI PADAM DATA (DELETE ACTION) ---
 if(isset($_GET['del']))
 {
     $key = $_GET['id'];
-    $ref = "Nurse/$key";
-    $delete = $database->getReference($ref)->remove();
     
-    if($delete){
-        $_SESSION['msg'] = "Nurse data deleted successfully!!";
+    // Semak sama ada data wujud dalam session mock, jika ya, padamkannya
+    if (isset($_SESSION['mock_nurses'][$key])) {
+        $deleted_name = $_SESSION['mock_nurses'][$key]['name'];
+        unset($_SESSION['mock_nurses'][$key]);
+        $_SESSION['msg'] = "Mock UI Success: Data for " . $deleted_name . " deleted successfully!!";
     } else {
-        $_SESSION['msg'] = "Failed to delete data.";
+        $_SESSION['msg'] = "Failed to delete data or data not found.";
     }
-    // Redirect semula ke fail manage_users.php selepas padam
+    
+    // Redirect semula ke fail ini untuk kemas kini paparan UI jadual
     header("Location: manage_users.php");
     exit();
 }
+
+$fetchdata = $_SESSION['mock_nurses'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,8 +84,9 @@ if(isset($_GET['del']))
                                     <h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Nurses</span></h5>
                                     
                                     <?php if(isset($_SESSION['msg']) && $_SESSION['msg'] != "") { ?>
-                                        <div class="alert alert-success" role="alert">
-                                            <?php echo htmlentities($_SESSION['msg']);?>
+                                        <div class="alert alert-success alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <strong>Notification:</strong> <?php echo htmlentities($_SESSION['msg']);?>
                                             <?php unset($_SESSION['msg']); ?>
                                         </div>
                                     <?php } ?>
@@ -80,9 +102,6 @@ if(isset($_GET['del']))
                                         </thead>
                                         <tbody>
 <?php
-$ref = "Nurse";
-$fetchdata = $database->getReference($ref)->getValue();
-         
 $cnt = 1;
 if(!empty($fetchdata)) {
     foreach($fetchdata as $key => $row) {
@@ -101,13 +120,13 @@ if(!empty($fetchdata)) {
                                                     </div>
                                                     
                                                     <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                                        <div class="btn-group" dropdown>
+                                                        <div class="btn-group">
                                                             <button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" data-toggle="dropdown">
                                                                 <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu pull-right dropdown-light" role="menu">
                                                                 <li><a href="edit-nurse.php?id=<?php echo $key;?>">Edit</a></li>
-                                                                <li><a href="manage_users.php?id=<?php echo $key;?>&del=delete" onClick="return confirm('Are you sure?')">Remove</a></li>
+                                                                <li><a href="manage_users.php?id=<?php echo $key;?>&del=delete" onClick="return confirm('Are you sure you want to delete this nurse?')">Remove</a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -119,21 +138,29 @@ if(!empty($fetchdata)) {
 } else {
 ?>
                                             <tr>
-                                                <td colspan="4" class="center text-danger">No nurse records found.</td>
+                                                <td colspan="4" class="center text-danger" style="padding: 20px;">No nurse records found. <br><a href="?reset=1" class="btn btn-xs btn-default margin-top-10">Reset Default Mock Data</a></td>
                                             </tr>
-<?php } ?>
+<?php 
+} 
+// Butang tambahan untuk reset semula senarai jika kesemua data telah dipadam semasa testing UI
+if (isset($_GET['reset'])) {
+    unset($_SESSION['mock_nurses']);
+    header("Location: manage_users.php");
+    exit();
+}
+?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
             
             <?php include('include/footer.php');?>
             <?php include('include/setting.php');?>
-            </div>
+        </div>
 
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
