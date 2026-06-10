@@ -1,22 +1,26 @@
 <?php
 session_start();
-error_reporting(0);
+// Tukar kepada E_ALL supaya kita boleh nampak jika ada ralat lain yang tersorok
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Ditutup sementara rujukan database Firebase
 // include('include/dbconfig.php'); 
 
 if(isset($_POST['submit']))
 {
-    // Cuma semak username & password rekaan di sini
     $mock_username = "nurse";
     $mock_password = "nurse123";
         
-    // PASTIKAN BARIS 11 INI DITULIS SEPERTI DI BAWAH:
     if($_POST['username'] == $mock_username && $_POST['password'] == $mock_password) {
 
         $extra = "dashboard.php";
+        
+        // --- UMPAN DATA SESI MOCK YANG LIHAT ASLI ---
         $_SESSION['login'] = $_POST['username'];
-        $_SESSION['id'] = "NURSE-MOCK-ID"; // ID rekaan sementara
+        $_SESSION['id'] = 1;                  // Gunakan ID nombor (biasanya template guna int)
+        $_SESSION['username'] = "Nurse OBEM"; // Sediakan siap-siap teks nama sekiranya header.php memanggilnya
         $_SESSION['role'] = 'nurse';
 
         $host = $_SERVER['HTTP_HOST'];
