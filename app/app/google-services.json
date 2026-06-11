@@ -1,45 +1,27 @@
 {
   "project_info": {
-    "project_number": "82384108280",
-    "firebase_url": "https://obem-91c3e.firebaseio.com",
-    "project_id": "obem-91c3e",
-    "storage_bucket": "obem-91c3e.appspot.com"
+    "project_number": "637768169222",
+    "firebase_url": "https://obem-test-default-rtdb.firebaseio.com",
+    "project_id": "obem-test",
+    "storage_bucket": "obem-test.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:82384108280:android:f792a2b71c49d42591d90d",
+        "mobilesdk_app_id": "1:637768169222:android:8b1f81a216fdc777f55087",
         "android_client_info": {
           "package_name": "com.medical.obem"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "82384108280-9ljbcaepvhdcmrj0be0m5ddj0rqt26ce.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.medical.obem",
-            "certificate_hash": "3143a06b0dea43cdbb3abe6b9c2a69557aee60cc"
-          }
-        },
-        {
-          "client_id": "82384108280-8td33j6reol9ro3o98lkmbf0bocngk9e.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBo_WHJ4Y-rE8sonCryX4HFzEl7VNgA-YE"
+          "current_key": "AIzaSyBRQVdrdcy27KutT-OI0ijLTXYl-bEySK0"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "82384108280-8td33j6reol9ro3o98lkmbf0bocngk9e.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

@@ -1,3 +1,17 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+    jcenter()
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
@@ -21,36 +35,36 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    // Keep local directory tracking active
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
 
-
+    // Firebase
     implementation 'com.google.firebase:firebase-database:19.6.0'
     implementation 'com.google.firebase:firebase-auth:20.0.1'
     implementation 'com.google.firebase:firebase-functions:19.2.0'
+
+    // UI Libraries & Layouts (Safe, functional ones only)
     implementation 'com.getbase:floatingactionbutton:1.10.1'
     implementation 'androidx.viewpager:viewpager:1.0.0'
-    implementation 'net.colindodd:gradientlayout:1.2'
+    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
+    implementation 'com.github.f0ris.sweetalert:library:1.5.6'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    // Core Languages
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.70'
+
+    // Testing Dependencies
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'com.google.android.material:material:1.2.0'
-    implementation "de.hdodenhof:circleimageview:3.0.0"
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
-    implementation 'br.com.simplepass:loading-button-android:2.2.0'
-    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
-    implementation 'com.github.GrenderG:Toasty:1.4.2'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'com.github.f0ris.sweetalert:library:1.5.6'
-    implementation "de.hdodenhof:circleimageview:3.0.0"
-    implementation 'im.dacer:AndroidCharts:1.0.4'
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.70'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'com.applandeo:material-calendar-view:1.4.0'
-
 }

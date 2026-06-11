@@ -13,6 +13,9 @@
     <color name="miniTitle">#fff</color>
     <color name="red">#ff1616</color>
 
+    <!-- Added pure black resource to fix the AAPT resource linking errors -->
+    <color name="black">#000000</color>
+
     <color name="gradientOrange">#FF416C</color>
     <color name="gradientViolet">#F386FA</color>
     <color name="gradientLightYellow">#FFA72F</color>

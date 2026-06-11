@@ -33,9 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private Button login;
     private TextView fpass;
-    private EditText email,password;
+    private EditText email, password;
     private FirebaseAuth mAuth;
     private ProgressBar loading;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,18 +45,17 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.pass);
         login = findViewById(R.id.login);
-        loading=findViewById(R.id.progressBar);
+        loading = findViewById(R.id.progressBar);
         loading.setVisibility(View.INVISIBLE);
-        fpass=findViewById(R.id.forget);
+        fpass = findViewById(R.id.forget);
         Sprite FadingCircle = new FadingCircle();
         loading.setIndeterminateDrawable(FadingCircle);
         mAuth = FirebaseAuth.getInstance();
+
         final FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-
-                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                        finish();
-
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+            finish();
         }
 
         fpass.setOnClickListener(new View.OnClickListener() {
@@ -74,48 +74,36 @@ public class MainActivity extends AppCompatActivity {
                 String emaill = email.getText().toString().trim();
                 String pass = password.getText().toString().trim();
 
-                boolean flag=false;
+                boolean flag = false;
 
                 if (emaill.isEmpty()) {
-                    flag= true;
+                    flag = true;
                     email.setError("Fields can't be empty");
                     login.setVisibility(View.VISIBLE);
                     loading.setVisibility(View.INVISIBLE);
-
                 }
-                if (pass.isEmpty()){
-                    flag=true;
+                if (pass.isEmpty()) {
+                    flag = true;
                     password.setError("Fields can't be empty");
                     login.setVisibility(View.VISIBLE);
                     loading.setVisibility(View.INVISIBLE);
-
                 }
-                if(flag == false){
-                    // if everything is fine, sign in
+                if (!flag) {
                     email.setError(null);
                     password.setError(null);
-
-                        Login(emaill,pass);
-
-
-
+                    Login(emaill, pass);
                 }
             }
-
         });
-
-
-
     }
 
     private void Login(String emaill, String pass) {
         mAuth.signInWithEmailAndPassword(emaill, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     onAuthSuccess(task.getResult().getUser());
-                }
-                else {
+                } else {
                     login.setVisibility(View.VISIBLE);
                     loading.setVisibility(View.INVISIBLE);
                     Toasty.error(getApplicationContext(), "Login Fail", Toast.LENGTH_SHORT).show();
@@ -127,54 +115,30 @@ public class MainActivity extends AppCompatActivity {
 
     private void onAuthSuccess(final FirebaseUser user) {
         if (user != null) {
-
-            mDatabase= FirebaseDatabase.getInstance().getReference("Health Status").child("Patient").child(user.getUid());
+            mDatabase = FirebaseDatabase.getInstance().getReference("Health Status").child("Patient").child(user.getUid());
             mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-
+                    // Bypassed email verification requirements permanently for testing
                     if (dataSnapshot.exists()) {
-                        boolean emailVerified = user.isEmailVerified();
-                        if (emailVerified){
-                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                            finish();
-                        }
-
-                           else
-                        {
-                            login.setVisibility(View.VISIBLE);
-                            loading.setVisibility(View.INVISIBLE);
-                            Toasty.error(getApplicationContext(), "Please verify your email", Toast.LENGTH_SHORT).show();
-                            Log.e("error", String.valueOf(emailVerified));
-                        }
-
-                    }
-                    else{
-                        boolean emailVerified = user.isEmailVerified();
-                        if (emailVerified){
-                            startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
-                            finish();
-                        }
-                        else
-                        {
-                            login.setVisibility(View.VISIBLE);
-                            loading.setVisibility(View.INVISIBLE);
-                            Toasty.error(getApplicationContext(), "Please verify your email", Toast.LENGTH_SHORT).show();
-                            Log.e("error", String.valueOf(emailVerified));
-                        }
-
+                        // Profile exists -> Transition straight to Dashboard
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        finish();
+                    } else {
+                        // Profile doesn't exist -> Transition straight to Patient Registration setup
+                        startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+                        finish();
                     }
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
+                public void onCancelled(DatabaseError databaseError) {}
             });
         }
     }
+
+    @Override
     public void onBackPressed() {
-        //super.onBackPressed();
         SweetAlertDialog progressDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
         progressDialog.setCancelable(false);
         progressDialog.setTitleText("Are you sure you want to exit?");
@@ -186,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(SweetAlertDialog sweetAlertDialog) {
                 sweetAlertDialog.dismiss();
                 finishAffinity();
-               finish();
+                finish();
             }
         });
         progressDialog.show();
