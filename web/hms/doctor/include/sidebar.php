@@ -34,7 +34,7 @@
 							</li>
 
 							<li>
-								<a href="Patient-list.php">
+								<a href="appointment-history.php">
 									<div class="item-content">
 										<div class="item-media">
 											<i class="ti-list"></i>
